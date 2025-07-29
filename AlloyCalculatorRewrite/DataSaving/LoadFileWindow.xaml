@@ -1,0 +1,17 @@
+﻿<Window x:Class="AlloyCalculatorRewrite.DataSaving.LoadFileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlloyCalculatorRewrite.DataSaving"
+        mc:Ignorable="d"
+        Title="Load File" Height="300" Width="400">
+    <Grid>
+        <ListBox x:Name="FileListBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        </ListBox>
+        <Button Content="Load Selected File" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Width="150" Click="LoadFileButton_Click"/>
+
+        <Button Content="File Explorer" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Width="100" Click="OpenDirectoryButton_Click"/>
+        <TextBox Name="SearchBox" TextChanged="searchBox_Changed" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Text="Search Here" Width="200"/>
+    </Grid>
+</Window>
