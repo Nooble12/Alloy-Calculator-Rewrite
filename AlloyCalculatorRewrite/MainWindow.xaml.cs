@@ -33,22 +33,11 @@ public partial class MainWindow : Window
             return;
         }
 
-        alloy = new Alloy(alloyName, maxAlloyVolume, ConvertObservableCollectionToList(metalList));
+        alloy = new Alloy(alloyName, maxAlloyVolume, metalList.ToList());
         var saveFileWindow = new SaveFileWindow(alloy);
         bool? result = saveFileWindow.ShowDialog();
     }
 
-    private List<Metal> ConvertObservableCollectionToList(ObservableCollection<Metal> collection)
-    {
-        List<Metal> alloyMetals = new List<Metal>();
-
-        foreach (var metal in collection)
-        {
-            alloyMetals.Add(metal);
-        }
-
-        return alloyMetals;
-    }
     private void LoadFile_Click(object sender, RoutedEventArgs e)
     {
         var loadFileWindow = new LoadFileWindow();
@@ -139,7 +128,7 @@ public partial class MainWindow : Window
             return;
         }
 
-        List<Metal> alloyMetals = ConvertObservableCollectionToList(metalList);
+        List<Metal> alloyMetals = metalList.ToList();
 
         alloy = new Alloy(alloyName, maxAlloyVolume, alloyMetals);
 
@@ -190,7 +179,7 @@ public partial class MainWindow : Window
         int number = 0;
         bool isSuccess = int.TryParse(MaxAlloyVolumeTextBox.Text, out number);
 
-        if (isSuccess && number < uint.MaxValue)
+        if (isSuccess && number < int.MaxValue)
         {
             maxAlloyVolume = number;
             MaxAlloyVolumeTextBox.Background = Brushes.White;
