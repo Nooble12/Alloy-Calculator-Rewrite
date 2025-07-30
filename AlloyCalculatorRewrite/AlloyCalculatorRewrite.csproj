@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\cheese_ghost.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\cheese_ghost.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="SaveFiles\" />
