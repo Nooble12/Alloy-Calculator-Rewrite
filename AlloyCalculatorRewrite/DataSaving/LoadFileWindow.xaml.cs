@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 
 namespace AlloyCalculatorRewrite.DataSaving
@@ -43,7 +41,7 @@ namespace AlloyCalculatorRewrite.DataSaving
             try
             {
                 string fileContent = File.ReadAllText(filePath);
-                MessageBox.Show($"File loaded: {filePath}\nContent:\n{fileContent}");
+                //MessageBox.Show($"File loaded: {filePath}\nContent:\n{fileContent}");
                 alloy = data.GetFileData(filePath);
             }
             catch (Exception ex)

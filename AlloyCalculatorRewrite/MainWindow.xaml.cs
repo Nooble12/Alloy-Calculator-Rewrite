@@ -57,7 +57,6 @@ public partial class MainWindow : Window
 
         if (tempAlloy == null) // uh oh, something went wrong
         {
-            MessageBox.Show("Error, could not load file :( ");
             return;
         }
 
@@ -118,14 +117,18 @@ public partial class MainWindow : Window
         {
             return;
         }
-        var inputWindow = new ConfirmWindow();
-        bool? result = inputWindow.ShowDialog();
 
-        bool confirmResult = inputWindow.GetResult();
+        //Display Message Box
+        string messageBoxText = "Do you want to clear all metals?";
+        string caption = "Confirm Action";
 
-        if (confirmResult)
+        MessageBoxResult result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        switch(result)
         {
-            metalList.Clear();
+            case MessageBoxResult.Yes:
+                metalList.Clear();
+            break;
         }
     }
 

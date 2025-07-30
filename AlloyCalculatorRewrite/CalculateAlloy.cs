@@ -1,6 +1,4 @@
-﻿using System.CodeDom;
-using System.Diagnostics;
-using System.Printing.IndexedProperties;
+﻿using System.Diagnostics;
 
 namespace AlloyCalculatorRewrite
 {
