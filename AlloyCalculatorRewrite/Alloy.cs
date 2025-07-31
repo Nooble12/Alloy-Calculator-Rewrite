@@ -14,6 +14,9 @@ namespace AlloyCalculatorRewrite
         [XmlElement("Alloy_Contents")]
         public List<Metal> MetalList { get; set; }
 
+        [XmlIgnore]
+        public int AlloyVolume {get;set;} 
+
         //No param for xml serialization
         public Alloy()
         {

@@ -63,15 +63,15 @@ namespace AlloyCalculatorRewrite
         {
             if(index == metalList.Count)
             {
-                int totalAlloyVolume = currentCombo.Values.Sum() * singleIngotVolume; // Gets the volume of the combo.
+                alloy.AlloyVolume = currentCombo.Values.Sum() * singleIngotVolume; // Gets the volume of the combo.
                 
-                if (totalAlloyVolume <= maxAlloyVolume)
+                if (alloy.AlloyVolume <= maxAlloyVolume)
                 {
                     int correctIngots = 0; // counter to count # of correct ingots. if correct, we "mark" the ingot as correct and if counter == length of metalList, all ingots should be correct.
                     foreach (var ingot in metalList)
                     {
-                        float ingotPercentOfAlloy = GetPercentOfAlloyVolume(ingot.IngotVolume * currentCombo[ingot.Name], maxAlloyVolume);
-                        if (ingotPercentOfAlloy >= ingot.minimumPercent && ingotPercentOfAlloy <= ingot.maximumPercent)
+                        ingot.IngotPercentOfAlloy = GetPercentOfAlloyVolume(ingot.IngotVolume * currentCombo[ingot.Name], maxAlloyVolume);
+                        if (ingot.IngotPercentOfAlloy >= ingot.MinimumPercent && ingot.IngotPercentOfAlloy <= ingot.MaximumPercent)
                         {
                             ingot.IngotCount = currentCombo[ingot.Name];
                             correctIngots++;
@@ -108,13 +108,13 @@ namespace AlloyCalculatorRewrite
 
         private int GetMaximumIngotsRequired(int volume, Metal inMetal)
         {
-            int max = (int)Math.Floor((inMetal.maximumPercent / 100f) * volume / inMetal.IngotVolume);
+            int max = (int)Math.Floor((inMetal.MaximumPercent / 100f) * volume / inMetal.IngotVolume);
             return max;
         }
 
         private int GetMinimumIngotsRequired(int volume, Metal inMetal)
         {
-            int min = (int)Math.Ceiling((inMetal.minimumPercent / 100f) * volume / inMetal.IngotVolume);
+            int min = (int)Math.Ceiling((inMetal.MinimumPercent / 100f) * volume / inMetal.IngotVolume);
             return min;
         }
 

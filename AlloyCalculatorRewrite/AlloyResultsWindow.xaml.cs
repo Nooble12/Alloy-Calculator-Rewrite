@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace AlloyCalculatorRewrite
@@ -8,51 +8,37 @@ namespace AlloyCalculatorRewrite
     /// </summary>
     public partial class AlloyResultsWindow : Window
     {
+        private ObservableCollection<Metal> metalList = new ObservableCollection<Metal>();
         public AlloyResultsWindow(bool isSolutionFound, Alloy inAlloy)
         {
             InitializeComponent();
 
             if (isSolutionFound)
             {
-                WriteResultsToTextBox(inAlloy);
+                MetalListBox.ItemsSource = metalList;
+                SetMetalList(inAlloy.MetalList);
+                AlloyVolumeLabel.Content = inAlloy.Name + " Volume: " + inAlloy.AlloyVolume + "mb" + " or " + GetNumberOfIngots(inAlloy) + " bars";
             }
             else
             {
-                ResultsTextBox.Text = "Error, could not find solution!";
+                HeaderGrid.Visibility = Visibility.Hidden;
+                MetalListBox.Visibility = Visibility.Hidden;
+                ErrorLabel.Visibility = Visibility.Visible;
             }
         }
 
-        private float GetIngotPercent(Metal inMetal, Alloy inAlloy)
+        private int GetNumberOfIngots(Alloy inAlloy)
         {
-            float ingotCountFloat = (float)inMetal.IngotCount;
-            float ingotVolumeFloat = (float)inMetal.IngotVolume;
-
-            return ((ingotCountFloat * ingotVolumeFloat) / GetAlloyVolume(inAlloy) * 100);
+            return inAlloy.AlloyVolume / inAlloy.MetalList.First().IngotVolume;
         }
 
-        private void WriteResultsToTextBox(Alloy inAlloy)
+        private void SetMetalList(List<Metal> inList)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine(inAlloy.Name);
-            builder.AppendLine("Max Volume:\t" + inAlloy.MaxAlloyVolume + "mb");
-            builder.AppendLine("Alloy Volume:\t" + GetAlloyVolume(inAlloy) + "mb");
-            builder.AppendLine("---------------------");
-            foreach (var metal in inAlloy.MetalList)
+            foreach (Metal metal in inList)
             {
-                float ingotPercent = GetIngotPercent(metal, inAlloy);
-                string roundedIngotPercent = ingotPercent.ToString("F2");
-                builder.AppendLine(metal.Name + ":\t" + metal.IngotCount + " (" + roundedIngotPercent + "%)");
+                metalList.Add(metal);
             }
-            ResultsTextBox.Text = builder.ToString();
         }
-
-        private int GetAlloyVolume(Alloy inAlloy)
-        {
-            int maxIngots = inAlloy.MaxAlloyVolume / inAlloy.MetalList.First().IngotVolume;
-            int alloyVolume = maxIngots * inAlloy.MetalList.First().IngotVolume;
-            return alloyVolume;
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 

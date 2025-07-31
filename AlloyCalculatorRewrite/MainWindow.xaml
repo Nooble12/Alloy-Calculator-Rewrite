@@ -54,8 +54,8 @@
                                     
                                     <Label Foreground="White" Content="{Binding Name}" Grid.Column="0" VerticalAlignment="Center"></Label>
                                     <Label Foreground="White" Content="{Binding IngotVolume}" Grid.Column="1" VerticalAlignment="Center"></Label>
-                                    <Label Foreground="White" Content="{Binding minimumPercent}" Grid.Column="2" VerticalAlignment="Center"></Label>
-                                    <Label Foreground="White" Content="{Binding maximumPercent}" Grid.Column="3" VerticalAlignment="Center"></Label>
+                                    <Label Foreground="White" Content="{Binding MinimumPercent}" Grid.Column="2" VerticalAlignment="Center"></Label>
+                                    <Label Foreground="White" Content="{Binding MaximumPercent}" Grid.Column="3" VerticalAlignment="Center"></Label>
                                     <Button Name="EditButton" Click="EditButton_Click" Content="Edit" Grid.Column="4"></Button>
                                     <Button Name="DeleteButton" Click="DeleteButton_Click" Content="X" Foreground="Red" Grid.Column="5"></Button>
                                 </Grid>

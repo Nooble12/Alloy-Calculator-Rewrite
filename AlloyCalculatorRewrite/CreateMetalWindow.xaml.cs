@@ -33,8 +33,8 @@ namespace AlloyCalculatorRewrite
         {
             MetalNameTextBox.Text = inMetal.Name;
             IngotVolumeTextBox.Text = inMetal.IngotVolume.ToString();
-            MinimumPercentTextBox.Text = inMetal.minimumPercent.ToString();
-            MaximumPercentTextBox.Text = inMetal.maximumPercent.ToString();
+            MinimumPercentTextBox.Text = inMetal.MinimumPercent.ToString();
+            MaximumPercentTextBox.Text = inMetal.MaximumPercent.ToString();
         }
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -42,8 +42,8 @@ namespace AlloyCalculatorRewrite
             {
                 metal.Name = MetalNameTextBox.Text;
                 metal.IngotVolume = ingotVolume;
-                metal.minimumPercent = minPercent;
-                metal.maximumPercent = maxPercent;
+                metal.MinimumPercent = minPercent;
+                metal.MaximumPercent = maxPercent;
 
                 this.DialogResult = true;
                 Close();
