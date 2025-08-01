@@ -38,7 +38,7 @@ namespace AlloyCalculatorRewrite
         }
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            if (inputsAreValid && nameInputIsValid)
+            if (inputsAreValid && nameInputIsValid && CheckIfNegativeInt())
             {
                 metal.Name = MetalNameTextBox.Text;
                 metal.IngotVolume = ingotVolume;
@@ -86,7 +86,6 @@ namespace AlloyCalculatorRewrite
                 DisplayErrorMessage("Invalid Percent Range");
                 HighlightTextBox(inTextBox, Brushes.Red);
                 inputsAreValid = false;
-                HideSubmitButton();
             }
             else
             {
@@ -119,13 +118,11 @@ namespace AlloyCalculatorRewrite
             if (isSuccess && number < int.MaxValue)
             {
                 DisplayErrorMessage("");
-                ShowSubmitButton();
                 HighlightTextBox(inTextBox, Brushes.White);
             }
             else
             {
                 DisplayErrorMessage("Error, invalid integer.");
-                HideSubmitButton();
                 HighlightTextBox(inTextBox, Brushes.Red);
                 inputsAreValid = false;
             }
@@ -133,6 +130,19 @@ namespace AlloyCalculatorRewrite
             InputResult result = new InputResult(isSuccess, number);
             return result;
 
+        }
+
+        private bool CheckIfNegativeInt()
+        {
+            if (minPercent < 0 || maxPercent < 0 || ingotVolume < 0)
+            {
+                DisplayErrorMessage("Inputs must be positive intergers");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         private void DisplayErrorMessage(string errorMessage)
         {
@@ -172,14 +182,12 @@ namespace AlloyCalculatorRewrite
                 nameInputIsValid = false;
                 HighlightTextBox(MetalNameTextBox, Brushes.Red);
                 DisplayErrorMessage("Can not use same names");
-                HideSubmitButton();
             }
             else
             {
                 nameInputIsValid = true;
                 HighlightTextBox(MetalNameTextBox, Brushes.White);
                 DisplayErrorMessage("");
-                ShowSubmitButton();
             }
         }
     }

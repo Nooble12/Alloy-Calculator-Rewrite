@@ -44,7 +44,7 @@
             </StackPanel>
         </Grid>
 
-        <Button Name="SubmitButton" Content="Submit" Grid.Row="3" Background="GreenYellow" Click="SubmitButton_Click" Visibility="Hidden"></Button>
+        <Button Name="SubmitButton" Content="Submit" Grid.Row="3" Background="GreenYellow" Click="SubmitButton_Click" Visibility="Visible"></Button>
         <TextBlock Name="ErrorMessageTextBlock" Grid.Row="5" Foreground="Red" FontSize="20"></TextBlock>
     </Grid>
 </Window>
