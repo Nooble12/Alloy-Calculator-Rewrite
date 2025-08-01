@@ -18,6 +18,7 @@ namespace AlloyCalculatorRewrite
                 MetalListBox.ItemsSource = metalList;
                 SetMetalList(inAlloy.MetalList);
                 AlloyVolumeLabel.Content = inAlloy.Name + " Volume: " + inAlloy.AlloyVolume + "mb" + " or " + GetNumberOfIngots(inAlloy) + " bars";
+                IngotVolumeLabel.Content = "Single Ingot Volume: " + inAlloy.MetalList.First().IngotVolume.ToString() + "mb";
             }
             else
             {

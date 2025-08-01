@@ -25,6 +25,7 @@
                 <StackPanel>
                     <TextBox Name="AlloyNameTextBox" Text="Alloy Name Here" TextChanged="AlloyNameTextBox_TextChanged"></TextBox>
                     <TextBox Name="MaxAlloyVolumeTextBox" Text="Alloy Volume (mb)" TextChanged="MaxAlloyVolumeTextBox_TextChanged"></TextBox>
+                    <TextBox Name="IngotVolumeTextBox" Text="Single Ingot Volume (mb)" TextChanged="IngotVolumeTextBox_TextChanged"></TextBox>
 
                     <Grid>
                         <Grid.ColumnDefinitions>

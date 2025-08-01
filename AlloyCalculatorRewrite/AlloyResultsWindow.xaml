@@ -42,6 +42,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <Label Name="AlloyVolumeLabel" FontSize="20" Foreground="White" Content="" HorizontalAlignment="Left"></Label>
+            <Label Name="IngotVolumeLabel" FontSize="20" Foreground="White" Content="" HorizontalAlignment="Left"></Label>
         </StackPanel>
         
         <Button Content="Save To File" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="30" Click="Button_Click" Visibility="Hidden"></Button>

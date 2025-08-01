@@ -136,7 +136,7 @@ namespace AlloyCalculatorRewrite
         {
             if (minPercent < 0 || maxPercent < 0 || ingotVolume < 0)
             {
-                DisplayErrorMessage("Inputs must be positive intergers");
+                DisplayErrorMessage("Inputs must be positive integers");
                 return false;
             }
             else

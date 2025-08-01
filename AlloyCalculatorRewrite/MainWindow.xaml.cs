@@ -16,9 +16,11 @@ public partial class MainWindow : Window
     private Alloy alloy;
     private string alloyName;
     private int maxAlloyVolume;
+    private int ingotVolume = 144; // default
 
     //flag for if input data is valid. i.e integers
-    private bool isInputDataValid = false;
+    private bool isMaxVolumeInputValid = false;
+    private bool isIngotVolumeInputValid = false;
 
     public MainWindow()
     {
@@ -28,7 +30,7 @@ public partial class MainWindow : Window
 
     private void SaveFileButton_Click(object sender, RoutedEventArgs e)
     {
-        if (!isInputDataValid || metalList.Count < 2)
+        if (!isMaxVolumeInputValid || metalList.Count < 2 || !isIngotVolumeInputValid)
         {
             return;
         }
@@ -63,10 +65,11 @@ public partial class MainWindow : Window
         //Setting alloy display properties
         AlloyNameTextBox.Text = alloy.Name;
         MaxAlloyVolumeTextBox.Text = alloy.MaxAlloyVolume.ToString();
+        IngotVolumeTextBox.Text = alloy.MetalList.First().IngotVolume.ToString(); // We assume all ingots have the same volume
     }
     private void AddMetal_Click(object sender, RoutedEventArgs e)
     {
-        Metal metal = new Metal("N/A", 0, 0);
+        Metal metal = new Metal("N/A", 0, 0, ingotVolume);
         bool result = CreateNewMetalDialogBox(metal, false);
 
         if (result)
@@ -123,7 +126,7 @@ public partial class MainWindow : Window
 
     private void CalculateAlloy_Click(object sender, RoutedEventArgs e)
     {
-        if (!isInputDataValid || metalList.Count < 2)
+        if (!isMaxVolumeInputValid || metalList.Count < 2 || !isIngotVolumeInputValid)
         {
             return;
         }
@@ -144,12 +147,6 @@ public partial class MainWindow : Window
             {
                 case Metal metal:
                     CreateNewMetalDialogBox(metal, true);
-
-                    int index = metalList.IndexOf(metal);
-                    //Jank but simple way to update the metal info on screen.
-                    metalList.Remove(metal);
-                    metalList.Insert(index, metal);
-
                 break;
             }
         }
@@ -183,12 +180,47 @@ public partial class MainWindow : Window
         {
             maxAlloyVolume = number;
             MaxAlloyVolumeTextBox.Background = Brushes.White;
-            isInputDataValid = true;
+            isMaxVolumeInputValid = true;
         }
         else
         {
-            isInputDataValid = false;
+            isMaxVolumeInputValid = false;
             MaxAlloyVolumeTextBox.Background = Brushes.Red;
+        }
+    }
+
+    private void IngotVolumeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        int number = 0;
+        bool isSuccess = int.TryParse(IngotVolumeTextBox.Text, out number);
+
+        if (isSuccess && number < int.MaxValue && number > 0)
+        {
+            ingotVolume = number;
+            IngotVolumeTextBox.Background = Brushes.White;
+            isIngotVolumeInputValid = true;
+
+            ApplyNewIngotVolume();
+        }
+        else
+        {
+            isIngotVolumeInputValid = false;
+            IngotVolumeTextBox.Background = Brushes.Red;
+        }
+    }
+
+    //if metals are already in the list, apply the new volume to those objects
+    private void ApplyNewIngotVolume()
+    {
+        if (metalList.Count > 0)
+        {
+            foreach (var metal in metalList)
+            {
+                if (metal.IngotVolume != ingotVolume)
+                {
+                    metal.IngotVolume = ingotVolume;
+                }
+            }
         }
     }
 
