@@ -7,7 +7,7 @@ A rewrite of my original alloy calculator from the ground up. Almost everything 
 
 # How To Run
 ### Clone The Repository
-git clone [https://github.com/Nooble12/Cheese-Clicker.git](https://github.com/Nooble12/Alloy-Calculator-Rewrite.git)  
+git clone https://github.com/Nooble12/Alloy-Calculator-Rewrite.git  
 Build and run the application.
 
 # Features (UI is WIP)
