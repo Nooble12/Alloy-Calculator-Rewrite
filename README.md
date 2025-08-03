@@ -13,7 +13,7 @@ Build and run the application.
 # Features (UI is WIP)
 <img width="967" height="536" alt="MainMenu" src="https://github.com/user-attachments/assets/21e0d353-fc33-4ea5-8934-22d36c754fe8" />
 <img width="471" height="322" alt="Create Metal" src="https://github.com/user-attachments/assets/09870732-66d2-417f-b017-8cc2371f9809" />
-<img width="785" height="537" alt="OutputWindow" src="https://github.com/user-attachments/assets/3f71a204-8682-47b5-b84a-3ef5e71d9b13" />
+<img width="782" height="537" alt="OutputWindow" src="https://github.com/user-attachments/assets/599fc1bb-b695-4122-9ae3-c36dfc1cbf75" />
 
 ## Saving and Loading Presets
 <img width="470" height="357" alt="LoadingData" src="https://github.com/user-attachments/assets/c7d13ca0-6961-4d24-ba42-c04aa0b393d1" />
