@@ -70,7 +70,7 @@ namespace AlloyCalculatorRewrite
                     int correctIngots = 0; // counter to count # of correct ingots. if correct, we "mark" the ingot as correct and if counter == length of metalList, all ingots should be correct.
                     foreach (var ingot in metalList)
                     {
-                        ingot.IngotPercentOfAlloy = GetPercentOfAlloyVolume(ingot.IngotVolume * currentCombo[ingot.Name], maxAlloyVolume);
+                        ingot.IngotPercentOfAlloy = GetPercentOfAlloyVolume(ingot.IngotVolume * currentCombo[ingot.Name], alloy.AlloyVolume);
                         if (ingot.IngotPercentOfAlloy >= ingot.MinimumPercent && ingot.IngotPercentOfAlloy <= ingot.MaximumPercent)
                         {
                             ingot.IngotCount = currentCombo[ingot.Name];
@@ -125,11 +125,9 @@ namespace AlloyCalculatorRewrite
             return maxIngots;
         }
 
-        private float GetPercentOfAlloyVolume(int inVolume, int totalAlloyVolume)
+        private float GetPercentOfAlloyVolume(int inVolume, int maxAlloyComboVolume)
         {
-            float volumeFloat = (float)inVolume;
-            float maxVolumeFloat = (float)totalAlloyVolume;
-            return (volumeFloat / maxVolumeFloat) * 100;
+            return ((float)inVolume / (float)maxAlloyComboVolume) * 100f;
         }
         
     }
